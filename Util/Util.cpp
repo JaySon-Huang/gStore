@@ -984,10 +984,9 @@ Util::getSystemOutput(string cmd)
 string
 Util::getExactPath(const char *str)
 {
-    string cmd = "realpath ";
-    cmd += string(str);
-
-    return getSystemOutput(cmd);
+    char resolved_path[PATH_MAX];
+    realpath(str, resolved_path);
+    return resolved_path;
 }
 
 void
